@@ -14,7 +14,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       from:'me@cheryljones.com.au',
       subject: `${name.toUpperCase()} sent you a message`,
       text: `Email: ${email} `,
-      html: `<strong>${message}</strong>`
+      html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email} </p> <p><strong>message:</strong> ${message}</p>`
     }
     try{
       await sgMail.send(msg)

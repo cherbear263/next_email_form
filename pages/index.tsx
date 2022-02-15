@@ -41,6 +41,7 @@ const Home: NextPage = () => {
 
     }
     console.log(values)
+    // automatically close the modal and success notification required.
     return;
   }
   const onChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
