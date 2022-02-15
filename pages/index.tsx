@@ -17,13 +17,28 @@ const Home: NextPage = () => {
   })
   const [errors, setErrors] = useState<{name?: string; email?:string; message?:string}>({})
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const errors = validate(values)
     const isError = Object.keys(errors).length
     if(isError && isError > 0){
       setErrors(errors)
       return;
+    }
+    try {
+      const res= await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      })
+      if(!res.ok) {
+        setValues({name: '', message: '', email: ''})
+      }
+    } catch(error) {
+      console.log(error)
+
     }
     console.log(values)
     return;
